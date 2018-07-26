@@ -1,0 +1,27 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <%= link_to("Bucket List del 18", tasks_path , class: "navbar-brand") %>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <%= current_user ? "Completadas #{current_user.tasks.count}/#{total_tasks}" : "" %>
+      </li>
+    </ul>
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item dropdown">
+        <button type="button" class="btn btn-primary dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <%= current_user ? current_user.email : "Ingresar" %> </button>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+          <% if current_user %>
+            <%= link_to("Salir", destroy_user_session_path, method: :delete, class: "dropdown-item") %>
+          <% else %>
+            <%= link_to("Log in", new_user_session_path , class: "dropdown-item") %>          
+            <%= link_to("Sign up", new_user_registration_path , class: "dropdown-item") %>
+          <% end %>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>
